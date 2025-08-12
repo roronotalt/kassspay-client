@@ -1,7 +1,7 @@
 import * as devalue from "devalue";
 
 // stringify wrapper using svelte devalue https://github.com/sveltejs/devalue
-export const stringify = (
+export const Kstringify = (
   value: any,
   reducers?: Record<string, (value: any) => any>
 ): string => {
@@ -9,7 +9,7 @@ export const stringify = (
 };
 
 // parse wrapper using svelte devalue https://github.com/sveltejs/devalue
-export const parse = (
+export const Kparse = (
   serialized: string,
   revivers?: Record<string, (value: any) => any>
 ) => {
@@ -19,7 +19,7 @@ export const parse = (
 // heavily copied from https://github.com/wevm/viem/blob/main/src/utils/unit/formatUnits.ts
 // formatUnits(420000000000n, 9)
 // '420'
-export const formatUnits = (
+export const KformatUnits = (
   value: bigint,
   precision: number,
   decimals?: number
@@ -87,7 +87,7 @@ export const formatUnits = (
  * parseUnits('420', 9)
  * // 420000000000n
  */
-export const parseUnits = (value: string, decimals: number): bigint => {
+export const KparseUnits = (value: string, decimals: number): bigint => {
   if (!/^(-?)([0-9]*)\.?([0-9]*)$/.test(value))
     throw new Error("Invalid decimal number");
 
@@ -129,7 +129,7 @@ export const parseUnits = (value: string, decimals: number): bigint => {
   return BigInt(`${negative ? "-" : ""}${integer}${fraction}`);
 };
 
-export const formatAddress = (address: string, network: string) => {
+export const KformatAddress = (address: string, network: string) => {
   const is_hex_network = !(
     network.toLowerCase() == "kasssandra" || network.toLowerCase() == "solana"
   );

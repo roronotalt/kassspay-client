@@ -54,3 +54,18 @@ export const KAddressKindToNetworks = (
             return KAddressKindToNetworksMap[kind];
     }
 };
+
+export const KFilterNetworks = (
+    networks: KSupportedNetworks[],
+    type: "devnet" | "mainnet" = "mainnet"
+) => {
+    if (type == "devnet") {
+        return networks.filter((network) =>
+            KSupportedDeveloperNetworks.find((devnet) => devnet == network)
+        );
+    } else {
+        return networks.filter((network) =>
+            KSupportedMainNetworks.find((mainnet) => mainnet == network)
+        );
+    }
+};

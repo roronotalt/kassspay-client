@@ -4,7 +4,11 @@
     "module": "dist/index.js",
     "types": "dist/index.d.ts",
     "version": "0.0.8-alpha",
-    "type": "module",
+    "type": "library",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kasssandra/kassspay-client.git"
+    },
     "scripts": {
         "build": "bun build src/index.ts --outdir dist --format esm && bun run build:types",
         "build:types": "bunx tsc --declaration --emitDeclarationOnly --outDir dist"

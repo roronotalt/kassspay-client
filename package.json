@@ -1,13 +1,28 @@
 {
     "name": "@kasssandra/kassspay",
-    "module": "index.ts",
-    "version": "0.0.3-alpha",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "version": "0.0.4-alpha",
     "type": "module",
+    "files": [
+        "dist/index.js",
+        "dist/index.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "scripts": {
-        "build": "bun build index.ts --outdir dist"
+        "build": "bun build src/index.ts --outdir dist --target node --format esm && bun run build:types",
+        "build:types": "bunx tsc --declaration --emitDeclarationOnly --outDir dist"
     },
     "devDependencies": {
-        "@types/bun": "latest"
+        "@types/bun": "latest",
+        "typescript": "^5"
     },
     "peerDependencies": {
         "typescript": "^5"

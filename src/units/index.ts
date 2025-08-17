@@ -1,22 +1,26 @@
-import * as devalue from "devalue";
+// copied from https://github.com/wevm/viem/blob/main/src/utils/unit/formatUnits.ts
+// MIT License
 
-// stringify wrapper using svelte devalue https://github.com/sveltejs/devalue
-export const Kstringify = (
-    value: any,
-    reducers?: Record<string, (value: any) => any>
-): string => {
-    return devalue.stringify(value, reducers);
-};
+// Copyright (c) 2023-present weth, LLC
 
-// parse wrapper using svelte devalue https://github.com/sveltejs/devalue
-export const Kparse = (
-    serialized: string,
-    revivers?: Record<string, (value: any) => any>
-) => {
-    return devalue.parse(serialized, revivers);
-};
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 
-// heavily copied from https://github.com/wevm/viem/blob/main/src/utils/unit/formatUnits.ts
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 // formatUnits(420000000000n, 9)
 // '420'
 export const KformatUnits = (
@@ -130,74 +134,4 @@ export const KparseUnits = (value: string, decimals: number): bigint => {
     }
 
     return BigInt(`${negative ? "-" : ""}${integer}${fraction}`);
-};
-
-// Kasssandra supported networks
-export const KSupportedDeveloperNetworks = [
-    "kasssandra devnet",
-    "solana devnet",
-] as const;
-export type KSupportedDeveloperNetworks =
-    (typeof KSupportedDeveloperNetworks)[number];
-
-export const KSupportedMainNetworks = ["kasssandra", "solana"] as const;
-export type KSupportedMainNetworks = (typeof KSupportedMainNetworks)[number];
-
-export const KSupportedNetworks = [
-    ...KSupportedDeveloperNetworks,
-    ...KSupportedMainNetworks,
-] as const;
-export type KSupportedNetworks = (typeof KSupportedNetworks)[number];
-
-export const KAddressKinds = ["kasssandra", "solana"] as const;
-export type KAddressKinds = (typeof KAddressKinds)[number];
-
-export const KNetworkToAddressKindMap: Record<
-    KSupportedNetworks,
-    KAddressKinds
-> = {
-    "kasssandra devnet": "kasssandra",
-    "solana devnet": "solana",
-    kasssandra: "kasssandra",
-    solana: "solana",
-};
-
-export const KNetworkToAddressKind = (network: KSupportedNetworks) => {
-    return KNetworkToAddressKindMap[network];
-};
-
-export const KAddressKindToNetworksMap = Object.groupBy(
-    Object.keys(KNetworkToAddressKindMap) as KSupportedNetworks[],
-    (network) => KNetworkToAddressKindMap[network]
-) as Record<KAddressKinds, KSupportedNetworks[]>;
-
-export const KAddressKindToNetworks = (
-    kind: KAddressKinds,
-    type: "devnet" | "mainnet" | "all" = "all"
-) => {
-    switch (type) {
-        case "devnet":
-            return KAddressKindToNetworksMap[kind].filter((network) =>
-                KSupportedDeveloperNetworks.find((devnet) => devnet == network)
-            );
-        case "mainnet":
-            return KAddressKindToNetworksMap[kind].filter((network) =>
-                KSupportedMainNetworks.find((mainnet) => mainnet == network)
-            );
-        case "all":
-            return KAddressKindToNetworksMap[kind];
-    }
-};
-
-export const KformatAddress = (
-    address: string,
-    network: KSupportedNetworks
-) => {
-    const network_kind = KNetworkToAddressKind(network);
-    const is_hex_network = !(
-        network_kind == "kasssandra" || network_kind == "solana"
-    );
-    return `${is_hex_network ? "0x" : ""}${address
-        .replace(/^0x/i, "")
-        .slice(0, 4)}...${address.slice(-4)}`;
 };

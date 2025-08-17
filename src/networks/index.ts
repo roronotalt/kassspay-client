@@ -1,0 +1,56 @@
+// Kasssandra supported networks
+export const KSupportedDeveloperNetworks = [
+    "kasssandra devnet",
+    "solana devnet",
+] as const;
+export type KSupportedDeveloperNetworks =
+    (typeof KSupportedDeveloperNetworks)[number];
+
+export const KSupportedMainNetworks = ["kasssandra", "solana"] as const;
+export type KSupportedMainNetworks = (typeof KSupportedMainNetworks)[number];
+
+export const KSupportedNetworks = [
+    ...KSupportedDeveloperNetworks,
+    ...KSupportedMainNetworks,
+] as const;
+export type KSupportedNetworks = (typeof KSupportedNetworks)[number];
+
+export const KAddressKinds = ["kasssandra", "solana"] as const;
+export type KAddressKinds = (typeof KAddressKinds)[number];
+
+export const KNetworkToAddressKindMap: Record<
+    KSupportedNetworks,
+    KAddressKinds
+> = {
+    "kasssandra devnet": "kasssandra",
+    "solana devnet": "solana",
+    kasssandra: "kasssandra",
+    solana: "solana",
+};
+
+export const KNetworkToAddressKind = (network: KSupportedNetworks) => {
+    return KNetworkToAddressKindMap[network];
+};
+
+export const KAddressKindToNetworksMap = Object.groupBy(
+    Object.keys(KNetworkToAddressKindMap) as KSupportedNetworks[],
+    (network) => KNetworkToAddressKindMap[network]
+) as Record<KAddressKinds, KSupportedNetworks[]>;
+
+export const KAddressKindToNetworks = (
+    kind: KAddressKinds,
+    type: "devnet" | "mainnet" | "all" = "all"
+) => {
+    switch (type) {
+        case "devnet":
+            return KAddressKindToNetworksMap[kind].filter((network) =>
+                KSupportedDeveloperNetworks.find((devnet) => devnet == network)
+            );
+        case "mainnet":
+            return KAddressKindToNetworksMap[kind].filter((network) =>
+                KSupportedMainNetworks.find((mainnet) => mainnet == network)
+            );
+        case "all":
+            return KAddressKindToNetworksMap[kind];
+    }
+};

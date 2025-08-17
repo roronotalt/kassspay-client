@@ -1,7 +1,7 @@
 {
   "name": "@kasssandra/kassspay",
   "module": "index.ts",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "type": "module",
   "scripts": {
     "build": "bun build index.ts --outdir dist"

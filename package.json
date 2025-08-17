@@ -1,18 +1,18 @@
 {
-  "name": "@kasssandra/kassspay",
-  "module": "index.ts",
-  "version": "0.0.2-alpha",
-  "type": "module",
-  "scripts": {
-    "build": "bun build index.ts --outdir dist"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "devalue": "^5.1.1"
-  }
+    "name": "@kasssandra/kassspay",
+    "module": "index.ts",
+    "version": "0.0.3-alpha",
+    "type": "module",
+    "scripts": {
+        "build": "bun build index.ts --outdir dist"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "devalue": "^5.1.1"
+    }
 }

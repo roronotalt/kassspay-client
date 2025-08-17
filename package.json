@@ -6,7 +6,7 @@
     "version": "0.0.7-alpha",
     "type": "module",
     "scripts": {
-        "build": "bun build src/index.ts --outdir dist --target node --format esm && bun run build:types",
+        "build": "bun build src/index.ts --outdir dist --format esm && bun run build:types",
         "build:types": "bunx tsc --declaration --emitDeclarationOnly --outDir dist"
     },
     "devDependencies": {

@@ -15,7 +15,7 @@ export const KSupportedNetworks = [
 ] as const;
 export type KSupportedNetworks = (typeof KSupportedNetworks)[number];
 
-export const KAddressKinds = ["kasssandra", "ed25519"] as const;
+export const KAddressKinds = ["kasssandra", "ed25519-base58"] as const;
 export type KAddressKinds = (typeof KAddressKinds)[number];
 
 export const KNetworkToAddressKindMap: Record<
@@ -23,9 +23,9 @@ export const KNetworkToAddressKindMap: Record<
     KAddressKinds
 > = {
     "kasssandra devnet": "kasssandra",
-    "solana devnet": "ed25519",
+    "solana devnet": "ed25519-base58",
     kasssandra: "kasssandra",
-    solana: "ed25519",
+    solana: "ed25519-base58",
 };
 
 export const KNetworkToAddressKind = (network: KSupportedNetworks) => {
@@ -52,20 +52,5 @@ export const KAddressKindToNetworks = (
             );
         case "all":
             return KAddressKindToNetworksMap[kind];
-    }
-};
-
-export const KFilterNetworks = (
-    networks: KSupportedNetworks[],
-    type: "devnet" | "mainnet" = "mainnet"
-) => {
-    if (type == "devnet") {
-        return networks.filter((network) =>
-            KSupportedDeveloperNetworks.find((devnet) => devnet == network)
-        );
-    } else {
-        return networks.filter((network) =>
-            KSupportedMainNetworks.find((mainnet) => mainnet == network)
-        );
     }
 };

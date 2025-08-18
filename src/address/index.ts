@@ -6,7 +6,7 @@ export const KformatAddress = (
 ) => {
     const network_kind = KNetworkToAddressKind(network);
     const is_hex_network = !(
-        network_kind == "kasssandra" || network_kind == "solana"
+        network_kind == "kasssandra" || network_kind == "ed25519"
     );
     return `${is_hex_network ? "0x" : ""}${address
         .replace(/^0x/i, "")

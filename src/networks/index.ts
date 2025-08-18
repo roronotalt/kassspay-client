@@ -15,7 +15,7 @@ export const KSupportedNetworks = [
 ] as const;
 export type KSupportedNetworks = (typeof KSupportedNetworks)[number];
 
-export const KAddressKinds = ["kasssandra", "solana"] as const;
+export const KAddressKinds = ["kasssandra", "ed25519"] as const;
 export type KAddressKinds = (typeof KAddressKinds)[number];
 
 export const KNetworkToAddressKindMap: Record<
@@ -23,9 +23,9 @@ export const KNetworkToAddressKindMap: Record<
     KAddressKinds
 > = {
     "kasssandra devnet": "kasssandra",
-    "solana devnet": "solana",
+    "solana devnet": "ed25519",
     kasssandra: "kasssandra",
-    solana: "solana",
+    solana: "ed25519",
 };
 
 export const KNetworkToAddressKind = (network: KSupportedNetworks) => {

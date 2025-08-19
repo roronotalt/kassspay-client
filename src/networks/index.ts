@@ -37,20 +37,6 @@ export const KAddressKindToNetworksMap = Object.groupBy(
     (network) => KNetworkToAddressKindMap[network]
 ) as Record<KAddressKinds, KSupportedNetworks[]>;
 
-export const KAddressKindToNetworks = (
-    kind: KAddressKinds,
-    type: "devnet" | "mainnet" | "all" = "all"
-) => {
-    switch (type) {
-        case "devnet":
-            return KAddressKindToNetworksMap[kind].filter((network) =>
-                KSupportedDeveloperNetworks.find((devnet) => devnet == network)
-            );
-        case "mainnet":
-            return KAddressKindToNetworksMap[kind].filter((network) =>
-                KSupportedMainNetworks.find((mainnet) => mainnet == network)
-            );
-        case "all":
-            return KAddressKindToNetworksMap[kind];
-    }
+export const KAddressKindToNetworks = (kind: KAddressKinds) => {
+    return KAddressKindToNetworksMap[kind];
 };

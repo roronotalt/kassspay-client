@@ -1,4 +1,4 @@
-export namespace KSolanaExtentions {
+export namespace KSolanaNativeTokenExtentions {
     export type ImmutableOwner = {
         type: "ImmutableOwner";
     };
@@ -24,14 +24,14 @@ export namespace KSolanaExtentions {
     };
 }
 
-export type KSolanaTokenMetadata = {
+export type KSolanaNativeTokenMetadata = {
     program_id: "spl-token" | "spl-token-2022";
     freeze_authority?: string | null;
     mint_authority?: string | null;
     extensions: (
-        | KSolanaExtentions.ImmutableOwner
-        | KSolanaExtentions.CpiGuard
-        | KSolanaExtentions.TokenMetadata
-        | KSolanaExtentions.TransferFeeConfig
+        | KSolanaNativeTokenExtentions.ImmutableOwner
+        | KSolanaNativeTokenExtentions.CpiGuard
+        | KSolanaNativeTokenExtentions.TokenMetadata
+        | KSolanaNativeTokenExtentions.TransferFeeConfig
     )[];
 };

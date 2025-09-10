@@ -1,4 +1,4 @@
-import type { KSolanaTokenMetadata } from "./solana_types";
+import type { KSolanaNativeTokenMetadata } from "./solana_types";
 
 // kasssandra supported networks
 export const KSupportedDeveloperNetworks = [
@@ -44,4 +44,4 @@ export const KAddressKindToNetworks = (kind: KAddressKinds) => {
 };
 
 // types for metadata of tokens on supported networks
-export type KTokenMetadata = KSolanaTokenMetadata | {};
+export type KNativeTokenMetadata = KSolanaNativeTokenMetadata | {};

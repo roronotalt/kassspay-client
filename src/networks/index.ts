@@ -1,4 +1,6 @@
-// Kasssandra supported networks
+import type { KSolanaTokenMetadata } from "./solana_types";
+
+// kasssandra supported networks
 export const KSupportedDeveloperNetworks = [
     "kasssandra devnet",
     "solana devnet",
@@ -40,3 +42,6 @@ export const KAddressKindToNetworksMap = Object.groupBy(
 export const KAddressKindToNetworks = (kind: KAddressKinds) => {
     return KAddressKindToNetworksMap[kind];
 };
+
+// types for metadata of tokens on supported networks
+export type KTokenMetadata = KSolanaTokenMetadata | {};

@@ -1,4 +1,5 @@
 import type { KSolanaNativeTokenMetadata } from "./solana_types";
+export * from "./solana_types";
 
 // kasssandra supported networks
 export const KSupportedDeveloperNetworks = [

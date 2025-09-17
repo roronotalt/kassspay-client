@@ -5,6 +5,7 @@ export namespace KSolanaNativeTokenExtentions {
     export type TokenMetadata = {
         name: string;
         symbol: string;
+        update_authority: string;
         uri: string;
     };
 }

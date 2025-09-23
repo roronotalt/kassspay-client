@@ -5,3 +5,4 @@ export * from "./networks";
 export * from "./address";
 export * from "./tokens";
 export * from "./client";
+export * from "./wallet";

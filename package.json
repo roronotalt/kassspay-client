@@ -3,7 +3,7 @@
     "main": "dist/index.js",
     "module": "dist/index.js",
     "types": "dist/index.d.ts",
-    "version": "0.0.26-alpha",
+    "version": "0.0.30-alpha",
     "type": "module",
     "repository": {
         "type": "git",

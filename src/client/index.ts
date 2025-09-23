@@ -1,4 +1,4 @@
-class KassspayClient {
+export class KassspayClient {
     private readonly api_url: string;
     private readonly websocket_url: string;
 
@@ -13,4 +13,18 @@ class KassspayClient {
     }
 }
 
-export default KassspayClient;
+export type TokenId = number;
+
+export const KWebsocketMethods = ["wallet_updates"] as const;
+export type KWebsocketMethods = (typeof KWebsocketMethods)[number];
+
+export namespace KWalletUpdatesResponses {
+    export type KWalletUpdatesResponse = {
+        id: string;
+        event: "balance_update";
+        data: { balance_change: Map<TokenId, bigint> };
+    };
+}
+
+export type KWalletUpdatesResponse =
+    KWalletUpdatesResponses.KWalletUpdatesResponse;

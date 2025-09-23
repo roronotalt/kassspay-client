@@ -10,6 +10,7 @@ export const KVerificationStatuses = [
     "deleted",
     "scam",
 ] as const;
+export type KVerificationStatuses = (typeof KVerificationStatuses)[number];
 
 export type KTokenMetadata = {
     id: number;

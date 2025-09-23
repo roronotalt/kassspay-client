@@ -4,3 +4,4 @@ export * from "./units";
 export * from "./networks";
 export * from "./address";
 export * from "./tokens";
+export * from "./client";

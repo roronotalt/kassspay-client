@@ -12,9 +12,10 @@ export const KVerificationStatuses = [
 ] as const;
 
 export type KTokenMetadata = {
+    id: number;
     verification_status: (typeof KVerificationStatuses)[number];
     name: string;
-    description: string;
+    description: string | null;
     ticker: string;
     precision: number;
     light_uri: string | null;
